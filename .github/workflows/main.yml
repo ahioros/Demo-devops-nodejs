@@ -1,0 +1,31 @@
+name: workflow-demo-devops-nodejs
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  CI:
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: checkout
+      uses: actions/checkout@v4.1.0
+
+    - name: Install Node.js
+      uses: actions/setup-node@v4.0.0
+      with:
+        node-version: 18.x
+
+    - name: npm install
+      run: npm install 
+
+    - name: npm install sqlite3
+      run: npm install sqlite3
+
+    - name: npm prettier
+      run: npm install prettier && npx prettier . --write && npm run prettier
+
+    - name: npm test
+      run: CI=true npm run test
