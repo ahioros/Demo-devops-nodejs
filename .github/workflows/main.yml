@@ -19,10 +19,7 @@ jobs:
         node-version: 18.x
 
     - name: npm install
-      run: npm install
-
-    - name: npm install sqlite3
-      run: npm install sqlite3
+      run: npm i
 
     - name: npm test
       run: npm run test
