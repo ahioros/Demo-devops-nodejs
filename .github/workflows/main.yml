@@ -23,3 +23,35 @@ jobs:
 
     - name: npm test
       run: npm run test
+
+  Build_Docker_Image:
+    needs:
+    - CI
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: checkout
+      uses: actions/checkout@v4.1.0
+
+    - name: BuildAndPush
+      uses: docker/login-action@v3.3.0
+      with:
+        username: "${{ secrets.DOCKERHUBCONNECTION_DOCKER_USERNAME }}"
+        password: "${{ secrets.DOCKERHUBCONNECTION_DOCKER_PASSWORD }}"
+
+    - name: Build the Docker image
+      run: docker build . --file "Dockerfile" -t ahioros/demo-devops-nodejs:${{ github.run_id }}
+
+    - name: Create latest tag image as well
+      run: docker tag ahioros/demo-devops-nodejs:${{ github.run_id }} ahioros/demo-devops-nodejs:latest
+
+    - name: Push Docker image with the version number
+      run: docker push ahioros/demo-devops-nodejs:${{ github.run_id }}
+
+    - name: Push the latest tag
+      run: docker push ahioros/demo-devops-nodejs:latest
+
+    - name: Logout
+      run: docker logout      
