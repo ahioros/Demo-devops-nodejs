@@ -1,0 +1,10 @@
+name: guillermo-demo-devops-nodejs
+services:
+  node:
+    container_name: guillermo-node-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8000
+    restart: always
