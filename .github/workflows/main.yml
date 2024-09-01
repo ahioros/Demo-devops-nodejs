@@ -18,11 +18,17 @@ jobs:
       with:
         node-version: 18.x
 
-    - name: npm install
+    - name: Code Build
       run: npm i
 
-    - name: npm test
+    - name: Unit Tests
       run: npm run test
+
+    - name Static Code analysis
+      uses: codacy/codacy-analysis-cli-action@master
+
+      #    - name: Code Coverage
+      #      run: npm run Coverage
 
   Build_Docker_Image:
     needs:
@@ -54,4 +60,4 @@ jobs:
       run: docker push ahioros/demo-devops-nodejs:latest
 
     - name: Logout
-      run: docker logout      
+      run: docker logout
