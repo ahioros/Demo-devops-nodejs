@@ -27,7 +27,6 @@ jobs:
     - name: Static Code analysis
       uses: codacy/codacy-analysis-cli-action@master
       with:
-        directory: users
         verbose: true
 
     - name: Code Coverage
