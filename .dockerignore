@@ -6,3 +6,4 @@ index.test.js
 .github/*
 .dockerignore
 .gitignore
+.env
