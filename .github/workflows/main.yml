@@ -24,7 +24,7 @@ jobs:
     - name: Unit Tests
       run: npm run test
 
-    - name Static Code analysis
+    - name: Static Code analysis
       uses: codacy/codacy-analysis-cli-action@master
 
       #    - name: Code Coverage
