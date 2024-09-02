@@ -1,6 +1,7 @@
 node_modules
 README.md
 Dockerfile
+coverage/
 docker-compose.*
 index.test.js
 .git/*
