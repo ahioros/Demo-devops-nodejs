@@ -27,7 +27,7 @@ jobs:
     - name: Static Code analysis
       uses: codacy/codacy-analysis-cli-action@master
       with:
-        verbose: true
+        verbose: false
 
     - name: Code Coverage
       run: npx jest --coverage
