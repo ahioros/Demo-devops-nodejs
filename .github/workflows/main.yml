@@ -74,9 +74,43 @@ jobs:
     - name: Logout
       run: docker logout
 
-    - name: Scan for vulnerabilitier
+    - name: Scan for vulnerabilities
       uses: crazy-max/ghaction-container-scan@v3
       with:
         image: ahioros/demo-devops-nodejs:latest
       env:
         TRIVY_TIMEOUT: 3m
+
+  Deployment:
+    needs:
+    - Build_Docker_Image
+
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: checkout
+      uses: actions/checkout@v4.1.0
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        repository: ahioros/Deploy-Demo-devops-nodejs
+        fetch-depth: 0
+        persist-credentials: false
+
+    - name: Deploy
+      run: |-
+        TAG=${{ github.run_id }}
+        EXP="image: ahioros/demo-devops-nodejs:[0-9]+"
+        REP="image: ahioros/demo-devops-nodejs:$TAG"
+        sed -E -i "s|$EXP|$REP|g" k8s/02-deployment.yaml
+        git config user.name  "Argo CD"
+        git config user.email "ArgoCD@example.com"
+        git checkout master --
+        git add --all
+        git commit -m "Deployment ID: ${{ github.run_id }}"
+      shell: bash
+
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        repository: ahioros/Deploy-Demo-devops-nodejs
+        GITHUB_TOKEN: ${{ secrets.API_TOKEN_GITHUB }}
