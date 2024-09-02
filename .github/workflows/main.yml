@@ -73,3 +73,10 @@ jobs:
 
     - name: Logout
       run: docker logout
+
+    - name: Scan for vulnerabilitier
+      uses: crazy-max/ghaction-container-scan@v3
+      with:
+        image: ahioros/demo-devops-nodejs:latest
+      env:
+        TRIVY_TIMEOUT: 3m
