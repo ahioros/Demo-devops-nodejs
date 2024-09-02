@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo-devops-svc
+  namespace: demo-devops
+spec:
+  selector:
+    apps: demo-devops-app
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8000
+  type: LoadBalancer
