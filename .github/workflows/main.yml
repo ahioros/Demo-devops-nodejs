@@ -24,10 +24,10 @@ jobs:
     - name: Unit Tests
       run: npm run test
 
-      #    - name: Static Code analysis
-      #      uses: codacy/codacy-analysis-cli-action@master
-      #      with:
-      #        verbose: true
+    - name: Static Code analysis
+      uses: codacy/codacy-analysis-cli-action@master
+      with:
+        verbose: true
 
     - name: Code Coverage
       run: npx jest --coverage
