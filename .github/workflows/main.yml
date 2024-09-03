@@ -101,7 +101,7 @@ jobs:
         TAG=${{ github.run_id }}
         EXP="image: ahioros/demo-devops-nodejs:[0-9]+"
         REP="image: ahioros/demo-devops-nodejs:$TAG"
-        sed -E -i "s|$EXP|$REP|g" k8s/02-deployment.yaml
+        sed -E -i "s|$EXP|$REP|g" k8s/05-deployment.yaml
         git config user.name  "Argo CD"
         git config user.email "ArgoCD@example.com"
         git checkout master --
