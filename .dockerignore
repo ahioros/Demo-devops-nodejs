@@ -10,3 +10,4 @@ index.test.js
 .dockerignore
 .gitignore
 .env
+lcov-base.info

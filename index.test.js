@@ -51,6 +51,14 @@ describe('User', () => {
         expect(response.body).toEqual({...data, "id": 1})
     })
 
+    test('Get user - ADDED BY GUILLERMO GARCIA L', async () => {
+        jest.spyOn(User, 'findOne').mockResolvedValue({...data, "id": 1})
+        const response = await request(app).get('/api/users/1')
+
+        expect(response.status).toBe(200)
+        expect(response.body).toEqual({...data, "id": 1})
+    })
+
     test('Create user', async () => {
         jest.spyOn(User, 'findOne').mockResolvedValue(null)
         jest.spyOn(User, 'create').mockResolvedValue({...data, "id": 1})

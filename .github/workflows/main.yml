@@ -38,7 +38,7 @@ jobs:
       with:
         barecheck-github-app-token: ${{ secrets.BARECHECK_GITHUB_APP_TOKEN  }}
         lcov-file: "./coverage/lcov.info"
-        base-lcov-file: "./coverage/lcov.info"
+        base-lcov-file: "./lcov-base.info"
         send-summary-comment: true
         show-annotations: "warning"
 
