@@ -16,7 +16,21 @@ spec:
     spec:
       containers:
         - name: demo-devops-app
-          image: ahioros/demo-devops-nodejs:10660593811
+          image: ahioros/demo-devops-nodejs:10668277471
+          readinessProbe:
+            httpGet:
+              path: /api/users
+              port: 8000
+            initialDelaySeconds: 25
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /api/users
+              port: 8000
+            initialDelaySeconds: 60
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
           resources:
             requests:
               memory: "64Mi"
@@ -25,7 +39,7 @@ spec:
               memory: "128Mi"
               cpu: "100m"
           ports:
-            - containerPort: 8080
+            - containerPort: 8000
           env:
             - name: DATABASE_USER
               valueFrom:
