@@ -4,4 +4,4 @@ metadata:
   name: demo-devops-config
   namespace: demo-devops
 data:
-  DATABASE_NAME: ./dev.sqlite
+  DATABASE_NAME: /app/data/dev.sqlite

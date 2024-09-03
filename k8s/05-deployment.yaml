@@ -14,6 +14,10 @@ spec:
       labels:
         apps: demo-devops-app
     spec:
+      volumes:
+        - name: demo-devops-storage
+          persistentVolumeClaim:
+            claimName: demo-devops-pvc
       containers:
         - name: demo-devops-app
           image: ahioros/demo-devops-nodejs:10668277471
@@ -54,3 +58,6 @@ spec:
           envFrom:
             - configMapRef:
                 name: demo-devops-config
+          volumeMounts:
+            - name: demo-devops-storage
+              mountPath: /app/data
