@@ -2,6 +2,7 @@ node_modules
 README.md
 Dockerfile
 coverage/
+k8s/
 docker-compose.*
 index.test.js
 .git/*
